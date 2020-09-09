@@ -9,7 +9,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 Vue.prototype.$connectSocketio = async function() {
-  Vue.prototype.$socket = io.connect("http://localhost:5000", {
+  Vue.prototype.$socket = io.connect("https://discussjunction.herokuapp.com", {
     query: {
       token: cookies.get("token"),
     },
