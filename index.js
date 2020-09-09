@@ -51,7 +51,7 @@ const io = socketio(server).adapter(
   redisAdapter({host:process.env.redishost, port:process.env.redisport,auth_pass:process.env.redispass})
 );
 
-app.use(cors());
+app.use(cors({origin:"https://discussjunction.herokuapp.com"}));
 app.use("/api", router);
 
 /**
