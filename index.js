@@ -13,6 +13,7 @@ const cors = require("cors");
 const router = require("./router");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const path=require('path')
 const dotenv = require("dotenv");
 dotenv.config();
 
