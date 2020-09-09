@@ -50,8 +50,7 @@ const io = socketio(server).adapter(
   redisAdapter({host:process.env.redishost, port:process.env.redisport,auth_pass:process.env.redispass})
 );
 
-app.use(cors({
-  origin: process.env.baseurl}));
+app.use(cors());
 app.use("/api", router);
 
 /**

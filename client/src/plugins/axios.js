@@ -1,7 +1,7 @@
 import axios from "axios";
 import Vue from "vue";
 
-const devInstance = createInstance("https://discussjunction.herokuapp.com");
+const devInstance = createInstance("https://discussjunction.herokuapp.com/api");
 
 function createInstance(baseURL) {
   return axios.create({
