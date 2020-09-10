@@ -200,11 +200,11 @@
     <!-- common dialog box -->
     <dialog-box />
     <!-- upload photo dialogbox -->
-    <v-dialog v-model="picture_uploader" max-width="500px" attach>
+    <v-dialog v-model="picture_uploader" max-width="500px"  persistent>
       <uploadprofilephoto v-on:changepic="changepic" />
     </v-dialog>
     <!-- change user details -->
-    <v-dialog v-model="changeuserdetails" max-width="500px" attach>
+    <v-dialog v-model="changeuserdetails" max-width="500px"  persistent>
       <change_userdetails v-on:changedetail="changedetail" v-bind:predetails="userdetails" />
     </v-dialog>
   </v-container>

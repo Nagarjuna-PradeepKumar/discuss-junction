@@ -73,7 +73,10 @@
         <!-- stepper content2 -->
         <v-stepper-content step="2">
           <v-row justify="center">
-            <v-card class="pa-10 cardbg" max-width="600px " :loading="imageloading">
+            <v-card class="pa-10 cardbg" max-width="600px ">
+              <v-overlay :value="imageloading" absolute color="titlebg">
+                <v-progress-circular indeterminate size="50"></v-progress-circular>
+              </v-overlay>
               <div id="croppie"></div>
               <v-row justify="center" class="white--text pa-0 ma-0">
                 <input
