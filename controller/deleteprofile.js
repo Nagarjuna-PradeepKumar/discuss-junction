@@ -39,7 +39,7 @@ async function deleteprofile(req,res){
                   })
               })
               user.deleteOne({_id:req.userid}).then(data=>{
-                pushtoid.then(datas=>{chamber.deleteMany({_id:{'$in':datas}})}).then(data=>{return res.send({"success":"Deleted your profile successfully"})}).catch(err=>{return res.send({"error":"error deleting user"})})
+                pushtoid.then(datas=>{chamber.deleteMany({_id:{'$in':datas}}).then(data=>{return res.send({"success":"Deleted your profile successfully"})}).catch(err=>{return res.send({"error":"error deleting user"})})})
               }).catch(err=>{return res.send({"error":"error deleting user"})})
           }else{
             user.deleteOne({_id:req.userid}).then(data=>{
