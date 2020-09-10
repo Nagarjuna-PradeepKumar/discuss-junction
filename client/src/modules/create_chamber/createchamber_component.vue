@@ -73,7 +73,7 @@
         <!-- stepper content2 -->
         <v-stepper-content step="2">
           <v-row justify="center">
-            <v-card class="pa-10 cardbg" max-width="600px ">
+            <v-card class="pa-10 cardbg" max-width="600px " :loading="imageloading">
               <div id="croppie"></div>
               <v-row justify="center" class="white--text pa-0 ma-0">
                 <input
@@ -124,6 +124,7 @@ export default {
   },
   mixins: [mixin],
   data: () => ({
+    imageloading:false,
     editmode: false,
     croppie: null,
     image: null,
@@ -231,6 +232,7 @@ export default {
         });
     },
     uploadFile() {
+      this.imageloading=true;
       this.croppie
         .result({
           format: "jpeg",
@@ -257,6 +259,7 @@ export default {
               }
             )
             .then(Response => {
+              this.imageloading=false;
               if (Response.data.success) {
                 this.image = response;
                 this.element = 3;

@@ -115,6 +115,9 @@
         <!-- stepper content 4 -->
         <v-stepper-content step="4">
           <v-card class="pa-10">
+            <v-overlay :value="overlay" absolute color="primary" opacity="0.2">
+              <v-progress-circular indeterminate size="50"></v-progress-circular>
+            </v-overlay>
             <div id="croppie"></div>
             <v-row justify="space-between">
               <input
@@ -234,6 +237,7 @@ export default {
           // console.log(picdata);
           // var onform = new FormData();
           // onform.append("file", picdata);
+          this.overlay = true;
           this.$axios
             .post(
               "/uploadprofilephoto",
@@ -246,9 +250,11 @@ export default {
             )
             .then(Response => {
               if (Response.data.success) {
+                this.overlay = false;
                 this.$router.push("profile");
               }
               if (Response.data.error) {
+                this.overlay = false;
                 this.$store.dispatch("alertdialog", {
                   show: true,
                   type: "yellow darken-2",

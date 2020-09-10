@@ -6,6 +6,9 @@
     <!-- {{(Date.now() - this.chamber.created > 300000)?"not editable":"editable"}} -->
     <v-hover v-slot:default="{ hover }">
       <v-card :elevation="hover ? 10 : 2" class="mb-3" v-if="!editmode&&!image_edit">
+        <v-overlay :value="overlay" absolute color="sandalbg">
+          <v-progress-circular indeterminate size="50"></v-progress-circular>
+        </v-overlay>
         <v-container class="cardbg">
           <v-row class="pl-8 pr-8 mb-0 pb-0">
             <v-col cols="11">
@@ -99,6 +102,9 @@
       :disabled="textsubmitloading"
       color="black"
     >
+    <v-overlay :value="overlay" absolute color="sandalbg">
+      <v-progress-circular indeterminate size="50"></v-progress-circular>
+    </v-overlay>
       <v-container class="cardbg pa-10">
         <v-form>
           <v-row>
@@ -194,6 +200,7 @@ export default {
   name: "ownchambercards",
   props: ["chamber", "index"],
   data: () => ({
+    overlay:false,
     textsubmitloading: false,
     imagesubmitloading: false,
     croppie: null,
@@ -223,12 +230,14 @@ export default {
     },
     confirmedit: async function() {
       this.textsubmitloading = true;
+      this.overlay=true;
       this.$axios
         .post("/changechamberdetails", this.send, {
           headers: { Authorization: "Bearer " + cookies.get("token") }
         })
         .then(Response => {
           if (Response.data.success) {
+            this.overlay=false;
             this.textsubmitloading = false;
             this.editmode = false;
             this.$emit("change_create_chamber_details", {
@@ -242,6 +251,7 @@ export default {
             });
           }
           if (Response.data.error) {
+            this.overlay=false;
             this.textsubmitloading = false;
             this.$store.dispatch("alertdialog", {
               show: true,
@@ -254,6 +264,7 @@ export default {
         });
     },
     deletechamber: function() {
+      this.overlay=true;
       this.$axios
         .post(
           "/deletechamber",
@@ -264,12 +275,14 @@ export default {
         )
         .then(Response => {
           if (Response.data.success) {
+            this.overlay=false;
             this.$emit("change_create_chamber_details", {
               mode: "delete",
               index: this.index
             });
           }
           if (Response.data.error) {
+            this.overlay=false;
             this.$store.dispatch("alertdialog", {
               show: true,
               type: "red darken-2",

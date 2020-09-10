@@ -1,5 +1,8 @@
 <template>
   <v-card min-height="200px" class="background">
+    <v-overlay :value="overlay" absolute color="sandalbg">
+      <v-progress-circular indeterminate size="50"></v-progress-circular>
+    </v-overlay>
     <v-card-title>change profile picture</v-card-title>
     <v-container>
       <div id="croppie"></div>
@@ -34,7 +37,8 @@ export default {
   },
   name: "changeprofilepicture",
   data: () => ({
-    image: null
+    image: null,
+    overlay:false
   }),
   methods: {
     uploadFile() {
@@ -53,6 +57,7 @@ export default {
           // console.log(picdata);
           // var onform = new FormData();
           // onform.append("file", picdata);
+          this.overlay=true;
           this.$axios
             .post(
               "/changeprofilephoto",
@@ -65,9 +70,11 @@ export default {
             )
             .then(Response => {
               if (Response.data.success) {
+                this.overlay=false;
                 this.$emit("changepic", { image: response });
               }
               if (Response.data.error) {
+                this.overlay=false;
                 this.$store.dispatch("alertdialog", {
                   show: true,
                   type: "yellow darken-2",
