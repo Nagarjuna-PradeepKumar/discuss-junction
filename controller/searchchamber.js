@@ -151,7 +151,7 @@ async function findbyhistory(req,res){
       ])
       if(dataarray[0].items){
         chamber.find({$text:{$search:await dataarray[0].items.join(' ') },active_user_count:{$gt:0}},{ score : { $meta: "textScore" },discuss_history:0 }).sort({score:{$meta:"textScore"}}).limit(20).then(doc=>{
-         return res.send({"success":doc}).catch(err=>{return res.send({"error":"No data found"})})
+         if(doc.length>0){return res.send({"success":doc})}else{return res.send({"error":"No data found"})}
         }).catch(err=>{return res.send({"error":"Error finding in database"})})
 
       }else{return res.send({"error":"No data found"})}
