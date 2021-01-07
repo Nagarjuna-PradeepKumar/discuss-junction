@@ -6,16 +6,26 @@
         <v-skeleton-loader type="list-item-avatar, article, actions" dark />
       </v-col>
       <v-col cols="12" md="6">
-        <v-skeleton-loader type="list-item-avatar-two-line, article, actions" dark />
+        <v-skeleton-loader
+          type="list-item-avatar-two-line, article, actions"
+          dark
+        />
       </v-col>
       <v-col cols="12" md="6">
-        <v-skeleton-loader type="list-item-avatar-two-line, article, actions" dark />
+        <v-skeleton-loader
+          type="list-item-avatar-two-line, article, actions"
+          dark
+        />
       </v-col>
     </v-row>
   </v-container>
-  <v-container v-else-if="is_all_loaded==='error'" class="mt-10">
+  <v-container v-else-if="is_all_loaded === 'error'" class="mt-10">
     <v-row justify="center">
-      <v-img :src="require('../../assets/error.png')" height="300px" max-width="600px" />
+      <v-img
+        :src="require('../../assets/error.png')"
+        height="300px"
+        max-width="600px"
+      />
     </v-row>
     <v-row justify="center" class="text-h1 mt-5">whOOPS!!!</v-row>
   </v-container>
@@ -44,16 +54,27 @@
                     max-width="150px"
                   >
                     <v-img
-                      :src="userdetails.user_picture || require('../../assets/commonimage.png')"
+                      :src="
+                        userdetails.user_picture ||
+                        require('../../assets/commonimage.png')
+                      "
                     >
                       <v-fade-transition>
                         <v-card-title
                           class="black--text pt-0 mt-0 transition-ease"
-                          v-show="hover? true:false"
+                          v-show="hover ? true : false"
                         >
                           <v-row justify="end" class="pt-0 mt-0">
-                            <v-btn color="transparent" fab @click="picture_uploader=true">
-                              <v-icon :class="{ 'show-btns': hover }" color="black">mdi-pencil</v-icon>
+                            <v-btn
+                              color="transparent"
+                              fab
+                              @click="picture_uploader = true"
+                            >
+                              <v-icon
+                                :class="{ 'show-btns': hover }"
+                                color="black"
+                                >mdi-pencil</v-icon
+                              >
                             </v-btn>
                           </v-row>
                         </v-card-title>
@@ -65,28 +86,36 @@
               <!-- profile details -->
               <v-col cols="12" md="8">
                 <v-hover v-slot:default="{ hover }">
-                  <v-card :elevation="hover ? 10 : 0" class="pl-5 pr-5 pt-1" min-height="150px">
+                  <v-card
+                    :elevation="hover ? 10 : 0"
+                    class="pl-5 pr-5 pt-1"
+                    min-height="150px"
+                  >
                     <v-btn
                       color="transparent"
                       absolute
                       fab
                       top
                       right
-                      v-show="hover? true:false"
-                      @click="changeuserdetails=true"
+                      v-show="hover ? true : false"
+                      @click="changeuserdetails = true"
                     >
                       <v-icon color="black">mdi-pencil</v-icon>
                     </v-btn>
                     <v-container>
                       <v-row class="pa-0 ma-0">
                         <v-col cols="4" class="pa-0 ma-0">name :</v-col>
-                        <v-col class="pa-0 ma-0">{{userdetails.user_name}}</v-col>
+                        <v-col class="pa-0 ma-0">{{
+                          userdetails.user_name
+                        }}</v-col>
                       </v-row>
                       <v-row v-if="userdetails.user_birthday" class="pa-0 ma-0">
                         <v-col cols="4" class="pa-0 ma-0">age :</v-col>
-                        <v-col
-                          class="pa-0 ma-0"
-                        >{{Math.trunc((Date.now()-userdetails.user_birthday)*3.171e-11)}}</v-col>
+                        <v-col class="pa-0 ma-0">{{
+                          Math.trunc(
+                            (Date.now() - userdetails.user_birthday) * 3.171e-11
+                          )
+                        }}</v-col>
                       </v-row>
                       <v-row v-else class="pa-0 ma-0">
                         <v-col cols="4" class="pa-0 ma-0">age:</v-col>
@@ -94,16 +123,23 @@
                       </v-row>
                       <v-row class="pa-0 ma-0" v-if="userdetails.user_gender">
                         <v-col cols="4" class="pa-0 ma-0">gender :</v-col>
-                        <v-col class="pa-0 ma-0">{{userdetails.user_gender}}</v-col>
+                        <v-col class="pa-0 ma-0">{{
+                          userdetails.user_gender
+                        }}</v-col>
                       </v-row>
                       <v-row class="pa-0 ma-0" v-else>
                         <v-col cols="4" class="pa-0 ma-0">gender :</v-col>
                         <v-col class="pa-0 ma-0">-- not available --</v-col>
                       </v-row>
 
-                      <v-row class="pa-0 ma-0" v-if="userdetails.interests.length>0">
+                      <v-row
+                        class="pa-0 ma-0"
+                        v-if="userdetails.interests.length > 0"
+                      >
                         <v-col class="pa-0 ma-0" cols="4">interest :</v-col>
-                        <v-col class="pa-0 ma-0">{{userdetails.interests.join(', ')}}</v-col>
+                        <v-col class="pa-0 ma-0">{{
+                          userdetails.interests.join(", ")
+                        }}</v-col>
                       </v-row>
 
                       <v-row class="pa-0 ma-0" v-else>
@@ -113,7 +149,7 @@
 
                       <v-row class="pa-0 ma-0" v-if="userdetails.about">
                         <v-col class="pa-0 ma-0" cols="4">about :</v-col>
-                        <v-col class="pa-0 ma-0">{{userdetails.about}}</v-col>
+                        <v-col class="pa-0 ma-0">{{ userdetails.about }}</v-col>
                       </v-row>
 
                       <v-row class="pa-0 ma-0" v-else>
@@ -130,10 +166,14 @@
         </v-row>
         <!-- left container for editing and deleting JOINED chambers-->
         <v-row justify="center" class="mt-5">
-          <v-col class="sandalbg" cols="12" v-if="joined_chamber_details.length>0">
+          <v-col
+            class="sandalbg"
+            cols="12"
+            v-if="joined_chamber_details.length > 0"
+          >
             <v-row justify="center" class="ma-0 pa-0">
               <my_joined_chambers
-                v-for="detail in joined_chamber_details "
+                v-for="detail in joined_chamber_details"
                 :key="detail._id"
                 v-bind:chamber="detail"
               />
@@ -144,7 +184,14 @@
                   v-model="joined_details_pageno"
                   class="my-4"
                   :total-visible="7"
-                  :length="joinedchambers_total_count<joined_details_items_per_page ?1:Math.ceil(joinedchambers_total_count/joined_details_items_per_page) "
+                  :length="
+                    joinedchambers_total_count < joined_details_items_per_page
+                      ? 1
+                      : Math.ceil(
+                          joinedchambers_total_count /
+                            joined_details_items_per_page
+                        )
+                  "
                 ></v-pagination>
               </v-col>
             </v-row>
@@ -152,9 +199,15 @@
           <!-- If joined chambers not found -->
           <v-col v-else>
             <v-card class="pr-10 pl-10 sandalbg">
-              <v-row class="text-h6 pt-5" justify="center">You haven't joined a discussion yet !</v-row>
+              <v-row class="text-h6 pt-5" justify="center"
+                >You haven't joined a discussion yet !</v-row
+              >
               <v-row justify="center" class="pa-10 ma-5">
-                <img src="../../assets/notfound1.png" alt="notfound1" />
+                <img
+                  src="../../assets/notfound1.png"
+                  alt="notfound1"
+                  width="100%"
+                />
               </v-row>
             </v-card>
           </v-col>
@@ -165,11 +218,11 @@
         class="sandalbackground mt-3 mb-3"
         cols="12"
         md="6"
-        v-if="created_chamber_details.length>0"
+        v-if="created_chamber_details.length > 0"
       >
         <v-row justify="center">
           <my_created_chambers
-            v-for="(detail,i) in created_chamber_details "
+            v-for="(detail, i) in created_chamber_details"
             :key="detail._id"
             v-bind:chamber="detail"
             v-bind:index="i"
@@ -183,16 +236,29 @@
               v-model="created_details_pageno"
               class="my-4"
               :total-visible="7"
-              :length="createdchambers_total_count<created_details_items_per_page ?1:Math.ceil(createdchambers_total_count/created_details_items_per_page) "
+              :length="
+                createdchambers_total_count < created_details_items_per_page
+                  ? 1
+                  : Math.ceil(
+                      createdchambers_total_count /
+                        created_details_items_per_page
+                    )
+              "
             ></v-pagination>
           </v-col>
         </v-row>
       </v-col>
       <v-col v-else cols="12" sm="6">
         <v-card class="pr-10 pl-10 sandalbg">
-          <v-row class="text-h6 pt-5 mb-5" justify="center">You have no chambers created !</v-row>
+          <v-row class="text-h6 pt-5 mb-5" justify="center"
+            >You have no chambers created !</v-row
+          >
           <v-row justify="center" class="pa-10 ma-5">
-            <img src="../../assets/notfound2.png" alt="notfound1" />
+            <img
+              src="../../assets/notfound2.png"
+              alt="notfound1"
+              width="100%"
+            />
           </v-row>
         </v-card>
       </v-col>
@@ -200,12 +266,15 @@
     <!-- common dialog box -->
     <dialog-box />
     <!-- upload photo dialogbox -->
-    <v-dialog v-model="picture_uploader" max-width="500px"  persistent>
+    <v-dialog v-model="picture_uploader" max-width="500px" persistent>
       <uploadprofilephoto v-on:changepic="changepic" />
     </v-dialog>
     <!-- change user details -->
-    <v-dialog v-model="changeuserdetails" max-width="500px"  persistent>
-      <change_userdetails v-on:changedetail="changedetail" v-bind:predetails="userdetails" />
+    <v-dialog v-model="changeuserdetails" max-width="500px" persistent>
+      <change_userdetails
+        v-on:changedetail="changedetail"
+        v-bind:predetails="userdetails"
+      />
     </v-dialog>
   </v-container>
 </template>
@@ -223,7 +292,7 @@ export default {
     uploadprofilephoto,
     change_userdetails,
     my_created_chambers,
-    my_joined_chambers
+    my_joined_chambers,
   },
   name: "me_component",
   data: () => ({
@@ -241,10 +310,10 @@ export default {
     created_chamber_details: [],
     joined_chamber_details: [],
     picture_uploader: false,
-    changeuserdetails: false
+    changeuserdetails: false,
   }),
   methods: {
-    changepic: function(base) {
+    changepic: function (base) {
       if (base) {
         this.userdetails.user_picture = base.image;
         this.picture_uploader = false;
@@ -252,7 +321,7 @@ export default {
         this.picture_uploader = false;
       }
     },
-    changedetail: function(details) {
+    changedetail: function (details) {
       if (details) {
         this.changeuserdetails = false;
         this.userdetails.user_gender = details.user_gender;
@@ -263,7 +332,7 @@ export default {
         this.changeuserdetails = false;
       }
     },
-    change_create_chamber_details: function(detail) {
+    change_create_chamber_details: function (detail) {
       if (detail.mode === "edit") {
         this.created_chamber_details[detail.index]._id = detail._id;
         this.created_chamber_details[detail.index].chamber_name =
@@ -280,9 +349,9 @@ export default {
         this.created_chamber_details.splice(detail.index, 1);
       }
     },
-    change_chamber_photo: function(data) {
+    change_chamber_photo: function (data) {
       this.created_chamber_details[data.index].photo_url = data.image;
-    }
+    },
   },
   mounted() {
     this.$emit("settab", { id: 0, name: "myprofile" });
@@ -295,15 +364,15 @@ export default {
           created_details_pageno: this.created_details_pageno,
           created_details_items_per_page: this.created_details_items_per_page,
           joined_details_pageno: this.joined_details_pageno,
-          joined_details_items_per_page: this.joined_details_items_per_page
+          joined_details_items_per_page: this.joined_details_items_per_page,
         },
         {
           headers: {
-            Authorization: "Bearer " + (await cookies.get("token"))
-          }
+            Authorization: "Bearer " + (await cookies.get("token")),
+          },
         }
       )
-      .then(Response => {
+      .then((Response) => {
         if (Response.data.success) {
           console.log(Response.data.success);
           this.userdetails = Response.data.success.userdetails;
@@ -326,67 +395,67 @@ export default {
             type: "red darken-2",
             title: "error !",
             message: Response.data.error,
-            buttontext: "ok"
+            buttontext: "ok",
           });
           this.is_all_loaded = "error";
         }
       });
   },
   computed: {
-    my_chamber_limited_detail: function() {
+    my_chamber_limited_detail: function () {
       return this.created_chamber_details.slice(
         (this.created_details_pageno - 1) * this.created_details_items_per_page,
         this.created_details_pageno * this.created_details_items_per_page
       );
     },
-    joined_chamber_limited_detail: function() {
+    joined_chamber_limited_detail: function () {
       return this.joined_chamber_details.slice(
         (this.joined_details_pageno - 1) * this.joined_details_items_per_page,
         this.joined_details_pageno * this.joined_details_items_per_page
       );
-    }
+    },
   },
   watch: {
-    created_details_pageno: async function() {
+    created_details_pageno: async function () {
       this.$axios
         .post(
           "/getcreatedchamber",
           {
             created_details_pageno: this.created_details_pageno,
-            created_details_items_per_page: this.created_details_items_per_page
+            created_details_items_per_page: this.created_details_items_per_page,
           },
           {
             headers: {
-              Authorization: "Bearer " + (await cookies.get("token"))
-            }
+              Authorization: "Bearer " + (await cookies.get("token")),
+            },
           }
         )
-        .then(Response => {
+        .then((Response) => {
           this.created_chamber_details = Response.data.success;
           this.createdchambers_total_count =
             Response.data.success.length > 0
               ? Response.data.success[0].count
               : 0;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
-    joined_details_pageno: async function() {
+    joined_details_pageno: async function () {
       this.$axios
         .post(
           "/getjoinedchamber",
           {
             joined_details_pageno: this.joined_details_pageno,
-            joined_details_items_per_page: this.joined_details_items_per_page
+            joined_details_items_per_page: this.joined_details_items_per_page,
           },
           {
             headers: {
-              Authorization: "Bearer " + (await cookies.get("token"))
-            }
+              Authorization: "Bearer " + (await cookies.get("token")),
+            },
           }
         )
-        .then(Response => {
+        .then((Response) => {
           console.log(Response.data);
           this.joined_chamber_details = Response.data.success;
           this.joinedchambers_total_count =
@@ -394,11 +463,11 @@ export default {
               ? Response.data.success[0].count
               : 0;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
